@@ -1,6 +1,8 @@
 package org.openjfx.demo;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -44,6 +46,7 @@ public class ShopController extends SceneChanger {
     public TableView CommentsTableView;
     public TextField commentField1;
     public TextField recipeNameField1;
+    public Button moreInfoButton;
 
 
     private List<LoggedUser> allLoggedUsers;
@@ -230,6 +233,18 @@ public class ShopController extends SceneChanger {
         if(selectedWarehouse.getRating()==5){
             fivestarsR.setSelected(true);
         }
+    }
+    public void openMoreInfo(){
+        Recipes selectedRecipe = RecipesTableView.getSelectionModel().getSelectedItem();
+        // Instantiate RecipeDetailsController and pass the selected recipe
+        MoreInfo controller = new MoreInfo(selectedRecipe);
+        // Load RecipeDetails.fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipeDetails.fxml"));
+        loader.setController(controller);
+
+        Stage currentStage = (Stage) RecipesTableView.getScene().getWindow();
+        currentStage.close();
+        OpenScene("moreAboutRecipe.fxml", "More Info");
     }
     public void loadRecipes() {
         List<Recipes> recipes = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
