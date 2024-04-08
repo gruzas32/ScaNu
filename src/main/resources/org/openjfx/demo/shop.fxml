@@ -38,7 +38,7 @@
                         <TextField fx:id="editDescriptionF" alignment="TOP_LEFT" layoutX="16.0" layoutY="272.0" prefHeight="125.0" prefWidth="422.0" promptText="Description" />
                         <Button fx:id="exitButton" layoutX="178.0" layoutY="405.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
                         <Button fx:id="signoutButton" layoutX="226.0" layoutY="405.0" mnemonicParsing="false" onAction="#backToLogin" text="Signout" />
-                        <Button fx:id="moreInfoButton" layoutX="178.0" layoutY="238.0" mnemonicParsing="false" text="More" />
+                        <Button fx:id="moreInfoButton" onAction="#openMoreInfo" layoutX="178.0" layoutY="238.0" mnemonicParsing="false" text="More" />
                      </children></AnchorPane>
             </content>
           </Tab>
