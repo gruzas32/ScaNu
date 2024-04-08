@@ -4,7 +4,8 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="472.0" prefWidth="469.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.demo.ShopController">
+
+<AnchorPane prefHeight="472.0" prefWidth="469.0" stylesheets="/styles/shopStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.demo.ShopController">
    <children>
       <TabPane prefHeight="472.0" prefWidth="469.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -36,9 +37,10 @@
                         <Button fx:id="editButton" layoutX="15.0" layoutY="405.0" mnemonicParsing="false" onAction="#EditRecipeItem" text="Edit" />
                         <TextField fx:id="editRecipeF" layoutX="16.0" layoutY="238.0" promptText="Recipe Name" />
                         <TextField fx:id="editDescriptionF" alignment="TOP_LEFT" layoutX="16.0" layoutY="272.0" prefHeight="125.0" prefWidth="422.0" promptText="Description" />
-                        <Button fx:id="exitButton" layoutX="178.0" layoutY="405.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
+                        <Button fx:id="exitButton" layoutX="178.0" layoutY="405.0" mnemonicParsing="false" onAction="#closeProgram" text="Exit" />
                         <Button fx:id="signoutButton" layoutX="226.0" layoutY="405.0" mnemonicParsing="false" onAction="#backToLogin" text="Signout" />
                         <Button fx:id="moreInfoButton" layoutX="178.0" layoutY="238.0" mnemonicParsing="false" onAction="#openMoreInfo" text="More" />
+                        <Button layoutX="294.0" layoutY="405.0" mnemonicParsing="false" onAction="#duplicateSelectedItem" text="Duplicate" />
                      </children></AnchorPane>
             </content>
           </Tab>

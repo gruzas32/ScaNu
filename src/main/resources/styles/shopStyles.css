@@ -1,0 +1,41 @@
+
+.anchor-pane {
+    -fx-background-color: #f0f0f0;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 120px;
+}
+
+.table-view {
+    -fx-table-cell-border-color: transparent;
+}
+
+/* TableColumn */
+.table-column {
+    -fx-font-size: 14px;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-spacing: 15px;
+}
+
+.text-field {
+    -fx-font-size: 14px;
+}
+
+.check-box {
+    -fx-font-size: 14px;
+}
+
+.combo-box {
+    -fx-font-size: 14px;
+}
+
+.tab {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: black;
+}
