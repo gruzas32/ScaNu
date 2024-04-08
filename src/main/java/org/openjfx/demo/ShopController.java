@@ -219,7 +219,6 @@ public class ShopController extends SceneChanger {
     public void loadCommentsField(MouseEvent mouseEvent) {
         Rating selectedWarehouse = (Rating) CommentsTableView.getSelectionModel().getSelectedItem();
         commentField1.setText(selectedWarehouse.getComment());
-        recipeNameField1.setText(new GenericDAO<>(sessionFactory).retrieveRecipeById(selectedWarehouse.getRecipeId()).getRecipeName());
         onestarR.setSelected(false);
         twostarsR.setSelected(false);
         threestarsR.setSelected(false);
@@ -259,5 +258,17 @@ public class ShopController extends SceneChanger {
         for (Recipes recipe : recipes) {
             recipeCMB.getItems().add(recipe.getRecipeName());
         }
+    }
+    public void filterComments(){
+        String text = recipeCMB.getValue().toString();
+        int recipeId = new GenericDAO<>(sessionFactory).retrieveRecipeIdBasedOnName(text).getRecipeId();
+        ratingList = new GenericDAO<>(sessionFactory).RetrieveRatingsBasedOnRecipeId(recipeId);
+        CommentsTableView.getItems().clear();
+        CommentsTableView.getItems().addAll(ratingList);
+    }
+    public void refreshComments(){
+        ratingList = new GenericDAO<>(sessionFactory).RetrieveAllRatings();
+        CommentsTableView.getItems().clear();
+        CommentsTableView.getItems().addAll(ratingList);
     }
 }

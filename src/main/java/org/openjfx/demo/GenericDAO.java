@@ -222,4 +222,38 @@ public class GenericDAO<T> {
             return session.createQuery(criteriaQuery).getResultList();
         }
     }
+    public Recipes retrieveRecipeIdBasedOnName(T name) {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Recipes> criteriaQuery = builder.createQuery(Recipes.class);
+            Root<Recipes> root = criteriaQuery.from(Recipes.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("recipeName"), name));
+
+            return session.createQuery(criteriaQuery).uniqueResult();
+        }
+    }
+    public Rating retrieveRecipeBasedOnName(T text) {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Rating> criteriaQuery = builder.createQuery(Rating.class);
+            Root<Rating> root = criteriaQuery.from(Rating.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("recipeId"), text));
+
+            return session.createQuery(criteriaQuery).uniqueResult();
+        }
+    }
+
+    public List<Rating> RetrieveRatingsBasedOnRecipeId(T recipeId) {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Rating> criteriaQuery = builder.createQuery(Rating.class);
+            Root<Rating> root = criteriaQuery.from(Rating.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("recipeId"), recipeId));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
 }
