@@ -1,5 +1,6 @@
 package org.openjfx.demo;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -75,7 +76,7 @@ public class ShopController extends SceneChanger {
     public void openAddItem() {
         Stage currentStage = (Stage) RecipesTableView.getScene().getWindow();
         currentStage.close();
-        OpenScene("addRecipe.fxml", "Add Recipe");
+        OpenScene("addRecipe.fxml", "Pridėti receptą");
     }
 
     public void EditRecipeItem() {
@@ -88,14 +89,11 @@ public class ShopController extends SceneChanger {
     }
 
 
-    private String hashPassword(String plainPassword) {
-        return BCrypt.hashpw(plainPassword, BCrypt.gensalt());
-    }
-
     public void DeleteRecipe() {
         Recipes recipes = RecipesTableView.getSelectionModel().getSelectedItem();
         new GenericDAO<>(sessionFactory).delete(recipes);
         RecipesTableView.getItems().remove(recipes);
+        RecipesTableView2.getItems().remove(recipes);
     }
 
     public void loadProductsField(MouseEvent mouseEvent) {
@@ -105,7 +103,7 @@ public class ShopController extends SceneChanger {
         editDescriptionF.setText(selectedWarehouse.getDescription());
     }
 
-    public void exit() {
+    public void closeProgram() {
         GenericDAO<LoggedUser> loggedUsersDAO = new GenericDAO<>(sessionFactory);
         allLoggedUsers = loggedUsersDAO.retrieveAllLoggedUsers();
         for (LoggedUser logged : allLoggedUsers) {
@@ -154,7 +152,7 @@ public class ShopController extends SceneChanger {
         }
         Stage currentStage = (Stage) RecipesTableView.getScene().getWindow();
         currentStage.close();
-        OpenScene("login.fxml", "Login");
+        OpenScene("login.fxml", "Prisijungimas");
     }
     public void addRating(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -171,7 +169,7 @@ public class ShopController extends SceneChanger {
         if(text.isEmpty()){
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
-            alert.setContentText("Please fill all fields");
+            alert.setContentText("Užpildykite visus laukus.");
             alert.showAndWait();
             return;
         }
@@ -181,7 +179,7 @@ public class ShopController extends SceneChanger {
         if(onestar.isSelected()==false && twostars.isSelected()==false && threestars.isSelected()==false && fourstars.isSelected()==false && fivestars.isSelected()==false){
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
-            alert.setContentText("Please select a rating");
+            alert.setContentText("Prašau pasirinkite įvertinimą.");
             alert.showAndWait();
             return;
         }
@@ -205,7 +203,7 @@ public class ShopController extends SceneChanger {
         ratingGenericDAODAO.create(rating);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
-        alert.setContentText("Rating added");
+        alert.setContentText("Pridėtas įvertinimas");
         alert.showAndWait();
     }
     public void loadCommentsField(MouseEvent mouseEvent) {
@@ -236,20 +234,38 @@ public class ShopController extends SceneChanger {
     }
     public void openMoreInfo(){
         Recipes selectedRecipe = RecipesTableView.getSelectionModel().getSelectedItem();
-        // Instantiate RecipeDetailsController and pass the selected recipe
         MoreInfo controller = new MoreInfo(selectedRecipe);
-        // Load RecipeDetails.fxml
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipeDetails.fxml"));
         loader.setController(controller);
 
         Stage currentStage = (Stage) RecipesTableView.getScene().getWindow();
         currentStage.close();
-        OpenScene("moreAboutRecipe.fxml", "More Info");
+        OpenScene("moreAboutRecipe.fxml", "Daugiau informacijos");
     }
     public void loadRecipes() {
         List<Recipes> recipes = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
         for (Recipes recipe : recipes) {
             recipeCMB.getItems().add(recipe.getRecipeName());
         }
+    }
+
+    public void refreshRecipeTables()
+    {
+        recipesList = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
+        RecipesTableView.getItems().clear();
+        RecipesTableView.getItems().addAll(recipesList);
+        RecipesTableView2.getItems().clear();
+        RecipesTableView2.getItems().addAll(recipesList);
+    }
+
+    public void duplicateSelectedItem(ActionEvent actionEvent) {
+Recipes selectedRecipe = RecipesTableView.getSelectionModel().getSelectedItem();
+        Recipes newRecipe = new Recipes();
+        newRecipe.setRecipeName(selectedRecipe.getRecipeName());
+        newRecipe.setDescription(selectedRecipe.getDescription());
+        new GenericDAO<>(sessionFactory).create(newRecipe);
+        RecipesTableView.getItems().add(newRecipe);
+        refreshRecipeTables();
+
     }
 }
