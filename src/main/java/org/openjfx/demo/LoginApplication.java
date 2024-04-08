@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+//komentaras
 public class LoginApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
