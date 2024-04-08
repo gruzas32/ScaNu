@@ -5,9 +5,9 @@
 
 <AnchorPane prefHeight="302.0" prefWidth="261.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.demo.AddRecipe">
    <children>
-      <Button layoutX="189.0" onAction="#RecipeAdd" layoutY="272.0" mnemonicParsing="false" text="Add" />
-      <Button layoutX="27.0" onAction="#BackToShop" layoutY="272.0" mnemonicParsing="false" text="Back" />
-      <TextField fx:id="recipeTextField" layoutX="27.0" layoutY="24.0" prefHeight="26.0" prefWidth="200.0" promptText="Recipe Name" />
-      <TextArea fx:id="recipeDesciprtionField" layoutX="27.0" layoutY="65.0" prefHeight="200.0" prefWidth="200.0" promptText="Description" />
+      <Button layoutX="176.0" layoutY="272.0" mnemonicParsing="false" onAction="#RecipeAdd" text="Pridėti" />
+      <Button layoutX="27.0" layoutY="272.0" mnemonicParsing="false" onAction="#BackToShop" text="Atgal" />
+      <TextField fx:id="recipeTextField" layoutX="27.0" layoutY="24.0" prefHeight="26.0" prefWidth="200.0" promptText="Recepto pavadinimas" />
+      <TextArea fx:id="recipeDesciprtionField" layoutX="27.0" layoutY="65.0" prefHeight="200.0" prefWidth="200.0" promptText="Recepto aprašymas" />
    </children>
 </AnchorPane>

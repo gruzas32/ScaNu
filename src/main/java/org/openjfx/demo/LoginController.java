@@ -16,7 +16,6 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class LoginController extends SceneChanger {
     public TextField login;
     private int userId;
@@ -40,17 +39,17 @@ public class LoginController extends SceneChanger {
        String login = this.login.getText();
         String password = this.password.getText();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
+        alert.setTitle("Informacinis langas");
         alert.setHeaderText(null);
         GenericDAO<Users> usersDAO = new GenericDAO<>(sessionFactory);
         GenericDAO<LoggedUser> loggedUsersDAO = new GenericDAO<>(sessionFactory);
         Users user = usersDAO.retrieveUserByUsername(login);
         if(user == null){
-            alert.setContentText("Incorrect password or Username or Both!");
+            alert.setContentText("Neteisingas prisijungimo vardas arba slaptažodis!");
             alert.showAndWait();
         }
         if(this.login.getText().equals("") || this.password.getText().equals("")){
-            alert.setContentText("Please fill all Fields!");
+            alert.setContentText("Prašome užpildyti visus laukus");
             alert.showAndWait();
         }
         else if(login.equals(user.getUsername())&& checkPassword(password, user.getPasswordHash())){
@@ -63,7 +62,7 @@ public class LoginController extends SceneChanger {
                 }
             Stage currentStage = (Stage) this.login.getScene().getWindow();
             currentStage.close();
-            OpenScene("shop.fxml", "Shop");
+            OpenScene("shop.fxml", "ScaNu");
         }
 
     }
@@ -73,7 +72,7 @@ public class LoginController extends SceneChanger {
     public void UserRegister() {
         Stage currentStage = (Stage) login.getScene().getWindow();
         currentStage.close();
-        OpenScene("register.fxml", "Register");
+        OpenScene("register.fxml", "Registracija");
     }
 
     public int returnUserId(){

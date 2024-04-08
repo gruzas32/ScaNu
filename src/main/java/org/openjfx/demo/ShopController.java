@@ -172,7 +172,7 @@ public class ShopController extends SceneChanger {
         }
         String text = commentField.getText();
         if(text.isEmpty()){
-            alert.setTitle("Information Dialog");
+            alert.setTitle("Klaida");
             alert.setHeaderText(null);
             alert.setContentText("Užpildykite visus laukus.");
             alert.showAndWait();
@@ -182,7 +182,7 @@ public class ShopController extends SceneChanger {
         Rating rating = new Rating();
         rating.setComment(commentField.getText());
         if(onestar.isSelected()==false && twostars.isSelected()==false && threestars.isSelected()==false && fourstars.isSelected()==false && fivestars.isSelected()==false){
-            alert.setTitle("Information Dialog");
+            alert.setTitle("Įvertinimas");
             alert.setHeaderText(null);
             alert.setContentText("Prašau pasirinkite įvertinimą.");
             alert.showAndWait();
@@ -213,9 +213,9 @@ public class ShopController extends SceneChanger {
         rating.setRecipeId(RecipesTableView2.getSelectionModel().getSelectedItem().getRecipeId());
         rating.setUserId(userId);
         ratingGenericDAODAO.create(rating);
-        alert.setTitle("Information Dialog");
+        alert.setTitle("Įvertinimas");
         alert.setHeaderText(null);
-        alert.setContentText("Pridėtas įvertinimas");
+        alert.setContentText("Įvertinimas pridėtas");
         alert.showAndWait();
     }
     public void loadCommentsField(MouseEvent mouseEvent) {
