@@ -88,10 +88,6 @@ public class ShopController extends SceneChanger {
     }
 
 
-    private String hashPassword(String plainPassword) {
-        return BCrypt.hashpw(plainPassword, BCrypt.gensalt());
-    }
-
     public void DeleteRecipe() {
         Recipes recipes = RecipesTableView.getSelectionModel().getSelectedItem();
         new GenericDAO<>(sessionFactory).delete(recipes);
@@ -187,6 +183,13 @@ public class ShopController extends SceneChanger {
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("Please select a rating");
+            alert.showAndWait();
+            return;
+        }
+        if(onestar.isSelected()&& twostars.isSelected() || onestar.isSelected()&& threestars.isSelected() || onestar.isSelected()&& fourstars.isSelected() || onestar.isSelected()&& fivestars.isSelected() || twostars.isSelected()&& threestars.isSelected() || twostars.isSelected()&& fourstars.isSelected() || twostars.isSelected()&& fivestars.isSelected() || threestars.isSelected()&& fourstars.isSelected() || threestars.isSelected()&& fivestars.isSelected() || fourstars.isSelected()&& fivestars.isSelected()){
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select only one rating");
             alert.showAndWait();
             return;
         }
