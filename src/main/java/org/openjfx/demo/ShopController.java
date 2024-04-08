@@ -93,6 +93,7 @@ public class ShopController extends SceneChanger {
         Recipes recipes = RecipesTableView.getSelectionModel().getSelectedItem();
         new GenericDAO<>(sessionFactory).delete(recipes);
         RecipesTableView.getItems().remove(recipes);
+        RecipesTableView2.getItems().remove(recipes);
     }
 
     public void loadProductsField(MouseEvent mouseEvent) {
