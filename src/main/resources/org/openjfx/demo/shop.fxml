@@ -103,7 +103,7 @@
                         </TableView>
                         <TextField fx:id="recipeNameField1" layoutX="14.0" layoutY="222.0" promptText="Recepto pavadinimas" />
                         <Button fx:id="filterBTN" layoutX="183.0" layoutY="222.0" mnemonicParsing="false" onAction="#SortByRating" text="Filtruoti" />
-                        <TextField fx:id="commentField1" layoutX="15.0" layoutY="272.0" promptText="Komentaras" />
+                        <TextField fx:id="commentField1" layoutX="15.0" layoutY="272.0" promptText="Komentara" />
                         <Button fx:id="submitRating1" layoutX="182.0" layoutY="272.0" mnemonicParsing="false" onAction="#addRating" text="Siųsti" />
                         <CheckBox fx:id="onestarR" layoutX="247.0" layoutY="411.0" mnemonicParsing="false" text="1" />
                         <CheckBox fx:id="twostarsR" layoutX="284.0" layoutY="411.0" mnemonicParsing="false" text="2" />
