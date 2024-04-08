@@ -120,6 +120,11 @@ public class ShopController extends SceneChanger {
         RecipesTableView2.getItems().addAll(recipesList);
 
     }
+    public void refreshButton(){
+        recipesList = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
+        RecipesTableView2.getItems().clear();
+        RecipesTableView2.getItems().addAll(recipesList);
+    }
 
     public void SortByRating(){
 
