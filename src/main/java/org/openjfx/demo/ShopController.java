@@ -1,5 +1,6 @@
 package org.openjfx.demo;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -245,5 +246,8 @@ public class ShopController extends SceneChanger {
         for (Recipes recipe : recipes) {
             recipeCMB.getItems().add(recipe.getRecipeName());
         }
+    }
+
+    public void duplicateSelectedItem(ActionEvent actionEvent) {
     }
 }
