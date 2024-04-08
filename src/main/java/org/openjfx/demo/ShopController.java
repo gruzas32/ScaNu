@@ -248,6 +248,23 @@ public class ShopController extends SceneChanger {
         }
     }
 
+    public void refreshRecipeTables()
+    {
+        recipesList = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
+        RecipesTableView.getItems().clear();
+        RecipesTableView.getItems().addAll(recipesList);
+        RecipesTableView2.getItems().clear();
+        RecipesTableView2.getItems().addAll(recipesList);
+    }
+
     public void duplicateSelectedItem(ActionEvent actionEvent) {
+Recipes selectedRecipe = RecipesTableView.getSelectionModel().getSelectedItem();
+        Recipes newRecipe = new Recipes();
+        newRecipe.setRecipeName(selectedRecipe.getRecipeName());
+        newRecipe.setDescription(selectedRecipe.getDescription());
+        new GenericDAO<>(sessionFactory).create(newRecipe);
+        RecipesTableView.getItems().add(newRecipe);
+        refreshRecipeTables();
+
     }
 }
