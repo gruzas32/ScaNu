@@ -121,6 +121,11 @@ public class ShopController extends SceneChanger {
         RecipesTableView2.getItems().addAll(recipesList);
 
     }
+    public void refreshButton(){
+        recipesList = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
+        RecipesTableView2.getItems().clear();
+        RecipesTableView2.getItems().addAll(recipesList);
+    }
 
     public void SortByRating(){
 
@@ -183,6 +188,13 @@ public class ShopController extends SceneChanger {
             alert.showAndWait();
             return;
         }
+        if(onestar.isSelected()&& twostars.isSelected() || onestar.isSelected()&& threestars.isSelected() || onestar.isSelected()&& fourstars.isSelected() || onestar.isSelected()&& fivestars.isSelected() || twostars.isSelected()&& threestars.isSelected() || twostars.isSelected()&& fourstars.isSelected() || twostars.isSelected()&& fivestars.isSelected() || threestars.isSelected()&& fourstars.isSelected() || threestars.isSelected()&& fivestars.isSelected() || fourstars.isSelected()&& fivestars.isSelected()){
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select only one rating");
+            alert.showAndWait();
+            return;
+        }
         if(onestar.isSelected()){
             rating.setRating(1);
         }
@@ -209,7 +221,6 @@ public class ShopController extends SceneChanger {
     public void loadCommentsField(MouseEvent mouseEvent) {
         Rating selectedWarehouse = (Rating) CommentsTableView.getSelectionModel().getSelectedItem();
         commentField1.setText(selectedWarehouse.getComment());
-        recipeNameField1.setText(new GenericDAO<>(sessionFactory).retrieveRecipeById(selectedWarehouse.getRecipeId()).getRecipeName());
         onestarR.setSelected(false);
         twostarsR.setSelected(false);
         threestarsR.setSelected(false);
@@ -249,6 +260,19 @@ public class ShopController extends SceneChanger {
         }
     }
 
+    public void filterComments(){
+        String text = recipeCMB.getValue().toString();
+        int recipeId = new GenericDAO<>(sessionFactory).retrieveRecipeIdBasedOnName(text).getRecipeId();
+        ratingList = new GenericDAO<>(sessionFactory).RetrieveRatingsBasedOnRecipeId(recipeId);
+        CommentsTableView.getItems().clear();
+        CommentsTableView.getItems().addAll(ratingList);
+    }
+    public void refreshComments(){
+        ratingList = new GenericDAO<>(sessionFactory).RetrieveAllRatings();
+        CommentsTableView.getItems().clear();
+        CommentsTableView.getItems().addAll(ratingList);
+
+
     public void refreshRecipeTables()
     {
         recipesList = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
@@ -266,6 +290,7 @@ Recipes selectedRecipe = RecipesTableView.getSelectionModel().getSelectedItem();
         new GenericDAO<>(sessionFactory).create(newRecipe);
         RecipesTableView.getItems().add(newRecipe);
         refreshRecipeTables();
+
 
     }
 }

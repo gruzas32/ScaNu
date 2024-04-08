@@ -4,6 +4,7 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
+
 <AnchorPane prefHeight="472.0" prefWidth="469.0" stylesheets="/styles/shopStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.demo.ShopController">
    <children>
       <TabPane prefHeight="472.0" prefWidth="469.0" tabClosingPolicy="UNAVAILABLE">
@@ -75,6 +76,7 @@
                         <CheckBox fx:id="fivestars" layoutX="168.0" layoutY="309.0" mnemonicParsing="false" text="5" />
                         <CheckBox fx:id="fourstars" layoutX="135.0" layoutY="309.0" mnemonicParsing="false" text="4" />
                         <CheckBox fx:id="threestars" layoutX="98.0" layoutY="309.0" mnemonicParsing="false" text="3" />
+                        <Button fx:id="refreshButton" layoutX="240.0" layoutY="222.0" mnemonicParsing="false" onAction="#refreshButton" text="Refresh " />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -101,16 +103,16 @@
                               </TableColumn>
                            </columns>
                         </TableView>
-                        <TextField fx:id="recipeNameField1" layoutX="14.0" layoutY="222.0" promptText="Recipe Name" />
-                        <Button fx:id="filterBTN" layoutX="183.0" layoutY="222.0" mnemonicParsing="false" onAction="#SortByRating" text="Filter" />
+                        <Button fx:id="refreshButton2" layoutX="236.0" layoutY="222.0" mnemonicParsing="false" onAction="#refreshComments" text="Refresh" />
                         <TextField fx:id="commentField1" layoutX="15.0" layoutY="272.0" promptText="Comment" />
                         <Button fx:id="submitRating1" layoutX="182.0" layoutY="272.0" mnemonicParsing="false" onAction="#addRating" text="Submit Comment" />
-                        <CheckBox fx:id="onestarR" layoutX="247.0" layoutY="411.0" mnemonicParsing="false" text="1" />
-                        <CheckBox fx:id="twostarsR" layoutX="284.0" layoutY="411.0" mnemonicParsing="false" text="2" />
-                        <CheckBox fx:id="fivestarsR" layoutX="426.0" layoutY="411.0" mnemonicParsing="false" text="5" />
-                        <CheckBox fx:id="fourstarsR" layoutX="377.0" layoutY="411.0" mnemonicParsing="false" text="4" />
-                        <CheckBox fx:id="threestarsR" layoutX="326.0" layoutY="411.0" mnemonicParsing="false" text="3" />
-                        <ComboBox fx:id="recipeCMB" layoutX="15.0" layoutY="320.0" prefWidth="150.0" promptText="Recipe List:" />
+                        <CheckBox fx:id="onestarR" layoutX="15.0" layoutY="313.0" mnemonicParsing="false" text="1" />
+                        <CheckBox fx:id="twostarsR" layoutX="53.0" layoutY="313.0" mnemonicParsing="false" text="2" />
+                        <CheckBox fx:id="fivestarsR" layoutX="182.0" layoutY="313.0" mnemonicParsing="false" text="5" />
+                        <CheckBox fx:id="fourstarsR" layoutX="139.0" layoutY="313.0" mnemonicParsing="false" text="4" />
+                        <CheckBox fx:id="threestarsR" layoutX="96.0" layoutY="313.0" mnemonicParsing="false" text="3" />
+                        <ComboBox fx:id="recipeCMB" layoutX="14.0" layoutY="222.0" prefWidth="150.0" promptText="Recipe List:" />
+                        <Button fx:id="filterBTN2" layoutX="182.0" layoutY="222.0" mnemonicParsing="false" onAction="#filterComments" text="Filter" />
                      </children>
                   </AnchorPane>
                </content>

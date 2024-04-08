@@ -41,6 +41,11 @@ public class AddRecipe extends SceneChanger {
         Recipes product = new Recipes();
         product.setRecipeName(recipeTextField.getText());
         product.setDescription(recipeDesciprtionField.getText());
+        if(recipeTextField.getText().isEmpty() || recipeDesciprtionField.getText().isEmpty()) {
+            alert.setContentText("Please fill all fields");
+            alert.showAndWait();
+            return;
+        }
         productsDAO.create(product);
 
         alert.setContentText("Recipe created");
