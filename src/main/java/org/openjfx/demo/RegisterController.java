@@ -20,10 +20,10 @@ public class RegisterController extends SceneChanger {
     private final SessionFactory sessionFactory;
 
 
-    public RegisterController(Stage stage, SessionFactory sessionFactory) {
+  /*  public RegisterController(Stage stage, SessionFactory sessionFactory) {
         super(stage);
         this.sessionFactory = sessionFactory;
-    }
+    }*/
     public RegisterController() {
         super(new Stage());
         sessionFactory = SessionFactoryProvider.provideSessionFactory();
