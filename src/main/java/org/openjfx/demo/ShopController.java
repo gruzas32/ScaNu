@@ -267,11 +267,11 @@ public class ShopController extends SceneChanger {
         CommentsTableView.getItems().clear();
         CommentsTableView.getItems().addAll(ratingList);
     }
-    public void refreshComments(){
+    public void refreshComments() {
         ratingList = new GenericDAO<>(sessionFactory).RetrieveAllRatings();
         CommentsTableView.getItems().clear();
         CommentsTableView.getItems().addAll(ratingList);
-
+    }
 
     public void refreshRecipeTables()
     {

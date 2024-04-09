@@ -57,7 +57,7 @@ public class RegisterController extends SceneChanger {
             currentStage.close();
             OpenScene("login.fxml", "Prisijungimas");
     }
-    private String hashPassword(String plainPassword) {
+    String hashPassword(String plainPassword) {
         return BCrypt.hashpw(plainPassword, BCrypt.gensalt());
     }
     public void BackToLogin() {
