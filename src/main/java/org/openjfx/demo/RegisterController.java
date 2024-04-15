@@ -29,6 +29,23 @@ public class RegisterController extends SceneChanger {
         sessionFactory = SessionFactoryProvider.provideSessionFactory();
     }
 
+    public void checkIfUserExists()
+    {
+        GenericDAO<Users> usersDAO = new GenericDAO<>(sessionFactory);
+        Users user = usersDAO.retrieveUserByUsername(usernameField.getText());
+        if(user != null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Vartotojas toks jau egzistuoja. Prašome įvesti kitą vartotojo vardą.");
+            alert.showAndWait();
+        }
+        else
+        {
+            RegisterUser();
+        }
+    }
+
     public void RegisterUser() {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
