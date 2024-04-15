@@ -1,97 +1,116 @@
-package org.openjfx.demo;
-import entity.Recipes;
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openjfx.demo.AddRecipe;
-import org.openjfx.demo.ShopController;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
+import org.openjfx.demo.GenericDAO;
+import org.openjfx.demo.SessionFactoryProvider;
+import entity.Recipes;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AddRecipeTest {
-    private static AddRecipe addRecipe;
-    private static ShopController shopController;
-    private static SessionFactory sessionFactory;
-    private static List<Recipes> allRecipes = new ArrayList<>();
-    private static CountDownLatch latch = new CountDownLatch(1);
 
     @BeforeAll
-    public static void setUp() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(1);
-
-        Platform.startup(() -> {
-            addRecipe = new AddRecipe();
-            shopController = new ShopController();
-            sessionFactory = SessionFactoryProvider.provideSessionFactory();
-            latch.countDown();
-        });
-
-        // Wait for JavaFX initialization to finish.
-        latch.await(5, TimeUnit.SECONDS);
+    public static void setUp() {
+        SessionFactory sessionFactory = SessionFactoryProvider.provideSessionFactory();
     }
 
     @Test
-    public void testRecipeAdd_Success() {
+    public void testRecipeAdd_ValidInput_Success() {
+        AddRecipe addRecipe = new AddRecipe();
+        String recipeName = "Pasta";
+        String description = "Delicious pasta recipe";
 
-        addRecipe.recipeTextField = new TextField();
-        addRecipe.recipeDesciprtionField = new TextArea();
-        addRecipe.sessionFactory = sessionFactory;
-        addRecipe.shopController = shopController;
+        addRecipe.setRecipeName(recipeName);
+        addRecipe.setDescription(description);
+        addRecipe.addRecipe();
 
-        Platform.runLater(() -> {
-            addRecipe.recipeTextField.setText("asdasd");
-            addRecipe.recipeDesciprtionField.setText("asdasdasd");
-            addRecipe.RecipeAdd();
-        });
-
-        try {
-            latch.await(5, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        allRecipes = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
-
-        assertEquals(1, allRecipes.size());
-
-        new GenericDAO<>(sessionFactory).delete(allRecipes.getFirst());
+        assertEquals(1, countRecipes());
     }
 
     @Test
-    public void testRecipeAdd_Fail() {
-        addRecipe.recipeTextField = new TextField();
-        addRecipe.recipeDesciprtionField = new TextArea();
-        addRecipe.sessionFactory = sessionFactory;
-        addRecipe.shopController = shopController;
+    public void testRecipeAdd_EmptyInput_Fail() {
+        AddRecipe addRecipe = new AddRecipe();
+        String recipeName = "";
+        String description = "";
 
-        Platform.runLater(() -> {
-            addRecipe.recipeTextField.setText("");
-            addRecipe.recipeDesciprtionField.setText("");
-            addRecipe.RecipeAdd();
-        });
+        addRecipe.setRecipeName(recipeName);
+        addRecipe.setDescription(description);
+        addRecipe.addRecipe();
 
-        try {
-            latch.await(5, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        assertEquals(0, countRecipes());
+    }
 
-        allRecipes = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
+    @Test
+    public void testRecipeAdd_NullInput_Fail() {
+        AddRecipe addRecipe = new AddRecipe();
+        String recipeName = null;
+        String description = null;
 
-        assertEquals(0, allRecipes.size());
+        addRecipe.setRecipeName(recipeName);
+        addRecipe.setDescription(description);
+        addRecipe.addRecipe();
 
+        assertEquals(0, countRecipes());
+    }
+
+
+    @Test
+    public void testRecipeAdd_EmptyRecipeName_Fail() {
+        // Prepare empty input
+        AddRecipe addRecipe = new AddRecipe();
+        String recipeName = "";
+        String description = "asdasdasdasdas";
+
+        addRecipe.setRecipeName(recipeName);
+        addRecipe.setDescription(description);
+        addRecipe.addRecipe();
+
+        assertEquals(0, countRecipes());
+    }
+
+    @Test
+    public void testRecipeAdd_EmptyRecipeDesc_Fail() {
+        AddRecipe addRecipe = new AddRecipe();
+        String recipeName = "asasasasa";
+        String description = "";
+
+        // Perform action
+        addRecipe.setRecipeName(recipeName);
+        addRecipe.setDescription(description);
+        addRecipe.addRecipe();
+
+        assertEquals(0, countRecipes());
+    }
+    @Test
+    public void testRecipeAdd_OnlyWhiteSpaceName_Fail() {
+        AddRecipe addRecipe = new AddRecipe();
+        String recipeName = " ";
+        String description = "sasasasasa";
+
+        addRecipe.setRecipeName(recipeName);
+        addRecipe.setDescription(description);
+        addRecipe.addRecipe();
+
+        assertEquals(0, countRecipes());
+    }
+
+    @Test
+    public void testRecipeAdd_OnlyWhiteSpaceDesc_Fail() {
+        AddRecipe addRecipe = new AddRecipe();
+        String recipeName = "asasasasa";
+        String description = " ";
+
+        addRecipe.setRecipeName(recipeName);
+        addRecipe.setDescription(description);
+        addRecipe.addRecipe();
+
+
+        assertEquals(0, countRecipes());
+    }
+
+    private int countRecipes() {
+        SessionFactory sessionFactory = SessionFactoryProvider.provideSessionFactory();
+        return new GenericDAO<>(sessionFactory).retrieveAllRecipes().size();
     }
 }
