@@ -20,10 +20,10 @@ public class RegisterController extends SceneChanger {
     private final SessionFactory sessionFactory;
 
 
-    public RegisterController(Stage stage, SessionFactory sessionFactory) {
+  /*  public RegisterController(Stage stage, SessionFactory sessionFactory) {
         super(stage);
         this.sessionFactory = sessionFactory;
-    }
+    }*/
     public RegisterController() {
         super(new Stage());
         sessionFactory = SessionFactoryProvider.provideSessionFactory();
@@ -51,11 +51,11 @@ public class RegisterController extends SceneChanger {
             loggedUser.setUserId(userId);
             loggedUser.setLogged(false);
             loggedUsersDAO.create(loggedUser);
-            alert.setContentText("user registered");
+            alert.setContentText("Naudotojas sukurtas!");
             alert.showAndWait();
             Stage currentStage = (Stage) passwordField.getScene().getWindow();
             currentStage.close();
-            OpenScene("login.fxml", "Login");
+            OpenScene("login.fxml", "Prisijungimas");
     }
     private String hashPassword(String plainPassword) {
         return BCrypt.hashpw(plainPassword, BCrypt.gensalt());

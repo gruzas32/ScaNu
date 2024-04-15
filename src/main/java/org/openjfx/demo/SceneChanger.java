@@ -28,7 +28,7 @@ public class SceneChanger {
 
 
         } catch (Exception e) {
-            System.out.println("Can't load scene");
+            System.out.println("Klaida - negalime atidaryti scenos!");
         }
     }
 

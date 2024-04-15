@@ -4,113 +4,117 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
+
 <AnchorPane prefHeight="472.0" prefWidth="469.0" stylesheets="/styles/shopStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.demo.ShopController">
    <children>
       <TabPane prefHeight="472.0" prefWidth="469.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Recipes">
+          <Tab text="Receptai">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="443.0" prefWidth="463.0">
                      <children>
                         <TableView fx:id="RecipesTableView" layoutX="15.0" layoutY="14.0" onMouseClicked="#loadProductsField" prefHeight="215.0" prefWidth="422.0">
                            <columns>
-                              <TableColumn text="Recipe Id">
+                              <TableColumn text="Recepto ID">
                                  <cellValueFactory>
                                     <PropertyValueFactory property="recipeId" />
                                  </cellValueFactory>
                               </TableColumn>
-                              <TableColumn text="Recipe Name">
+                              <TableColumn prefWidth="135.0" text="Recepto pavadinimas">
                                  <cellValueFactory>
                                     <PropertyValueFactory property="recipeName" />
                                  </cellValueFactory>
                               </TableColumn>
-                              <TableColumn text="Description">
+                              <TableColumn prefWidth="206.0" text="Aprašymas">
                                  <cellValueFactory>
                                     <PropertyValueFactory property="description" />
                                  </cellValueFactory>
                               </TableColumn>
                            </columns>
                         </TableView>
-                        <Button fx:id="addButton" layoutX="127.0" layoutY="405.0" mnemonicParsing="false" onAction="#openAddItem" text="Add" />
-                        <Button fx:id="deleteButton" layoutX="66.0" layoutY="405.0" mnemonicParsing="false" onAction="#DeleteRecipe" text="Delete" />
-                        <Button fx:id="editButton" layoutX="15.0" layoutY="405.0" mnemonicParsing="false" onAction="#EditRecipeItem" text="Edit" />
-                        <TextField fx:id="editRecipeF" layoutX="16.0" layoutY="238.0" promptText="Recipe Name" />
-                        <TextField fx:id="editDescriptionF" alignment="TOP_LEFT" layoutX="16.0" layoutY="272.0" prefHeight="125.0" prefWidth="422.0" promptText="Description" />
-                        <Button fx:id="exitButton" layoutX="178.0" layoutY="405.0" mnemonicParsing="false" onAction="#closeProgram" text="Exit" />
-                        <Button fx:id="signoutButton" layoutX="226.0" layoutY="405.0" mnemonicParsing="false" onAction="#backToLogin" text="Signout" />
-                        <Button fx:id="moreInfoButton" layoutX="178.0" layoutY="238.0" mnemonicParsing="false" onAction="#openMoreInfo" text="More" />
-                        <Button layoutX="294.0" layoutY="405.0" mnemonicParsing="false" onAction="#duplicateSelectedItem" text="Duplicate" />
+                        <Button fx:id="addButton" layoutX="140.0" layoutY="405.0" mnemonicParsing="false" onAction="#openAddItem" text="Pridėti" />
+                        <Button fx:id="deleteButton" layoutX="91.0" layoutY="405.0" mnemonicParsing="false" onAction="#DeleteRecipe" text="Trinti" />
+                        <Button fx:id="editButton" layoutX="15.0" layoutY="405.0" mnemonicParsing="false" onAction="#EditRecipeItem" text="Redaguoti" />
+                        <TextField fx:id="editRecipeF" layoutX="16.0" layoutY="238.0" promptText="Recepto pavadinimas" />
+                        <TextField fx:id="editDescriptionF" alignment="TOP_LEFT" layoutX="16.0" layoutY="272.0" prefHeight="125.0" prefWidth="422.0" promptText="Aprašymas" />
+                        <Button fx:id="exitButton" layoutX="397.0" layoutY="405.0" mnemonicParsing="false" onAction="#closeProgram" text="Išeiti" />
+                        <Button fx:id="signoutButton" layoutX="321.0" layoutY="405.0" mnemonicParsing="false" onAction="#backToLogin" text="Atsijungti" />
+                        <Button fx:id="moreInfoButton" layoutX="178.0" layoutY="238.0" mnemonicParsing="false" onAction="#openMoreInfo" text="Daugiau" />
+                        <Button layoutX="199.0" layoutY="405.0" mnemonicParsing="false" onAction="#duplicateSelectedItem" text="Dublikuoti" />
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab text="Recipe Management">
+          <Tab text="Receptų valdymas">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="363.0" prefWidth="470.0">
                      <children>
                         <TableView fx:id="RecipesTableView2" layoutX="8.0" layoutY="6.0" prefHeight="200.0" prefWidth="399.0">
                             <columns>
-                                <TableColumn text="Recipe Id">
+                                <TableColumn text="Recepto ID">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="recipeId" />
                                     </cellValueFactory>
                                 </TableColumn>
-                                <TableColumn text="Recipe Name">
+                                <TableColumn prefWidth="143.0" text="Recepto pavadinimas">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="recipeName" />
                                     </cellValueFactory>
                                 </TableColumn>
-                                <TableColumn text="Description">
+                                <TableColumn prefWidth="172.0" text="Aprašymas">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="description" />
                                     </cellValueFactory>
                                 </TableColumn>
                             </columns>
                         </TableView>
-                        <TextField fx:id="recipeNameField" layoutX="14.0" layoutY="222.0" promptText="Recipe Name" />
-                        <Button fx:id="filterButton" layoutX="183.0" layoutY="222.0" mnemonicParsing="false" onAction="#SortByProductName" text="Filter" />
-                        <TextField fx:id="commentField" layoutX="15.0" layoutY="272.0" promptText="Comment" />
-                        <Button fx:id="submitRating" layoutX="182.0" layoutY="272.0" mnemonicParsing="false" onAction="#addRating" text="Submit Comment" />
+                        <TextField fx:id="recipeNameField" layoutX="14.0" layoutY="222.0" promptText="Recepto pavadinimas" />
+                        <Button fx:id="filterButton" layoutX="183.0" layoutY="222.0" mnemonicParsing="false" onAction="#SortByProductName" text="Filtruoti" />
+                        <TextField fx:id="commentField" layoutX="15.0" layoutY="272.0" promptText="Komentaras" />
+                        <Button fx:id="submitRating" layoutX="182.0" layoutY="272.0" mnemonicParsing="false" onAction="#addRating" text="Siųsti" />
                         <CheckBox fx:id="onestar" layoutX="17.0" layoutY="309.0" mnemonicParsing="false" text="1" />
                         <CheckBox fx:id="twostars" layoutX="59.0" layoutY="309.0" mnemonicParsing="false" text="2" />
                         <CheckBox fx:id="fivestars" layoutX="168.0" layoutY="309.0" mnemonicParsing="false" text="5" />
                         <CheckBox fx:id="fourstars" layoutX="135.0" layoutY="309.0" mnemonicParsing="false" text="4" />
                         <CheckBox fx:id="threestars" layoutX="98.0" layoutY="309.0" mnemonicParsing="false" text="3" />
+                        <Button fx:id="refreshButton" layoutX="240.0" layoutY="222.0" mnemonicParsing="false" onAction="#refreshButton" text="Refresh " />
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="Recipe Comments Section">
+            <Tab text="Receptų įvertinimai">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="363.0" prefWidth="470.0">
                      <children>
                         <TableView fx:id="CommentsTableView" layoutX="8.0" layoutY="6.0" onMouseClicked="#loadCommentsField" prefHeight="200.0" prefWidth="399.0">
                            <columns>
-                              <TableColumn text="User Id">
+                              <TableColumn text="Vartotojo ID">
                                  <cellValueFactory>
                                     <PropertyValueFactory property="userId" />
                                  </cellValueFactory>
                               </TableColumn>
-                              <TableColumn text="Recipe Id">
+                              <TableColumn text="Recepto ID">
                                  <cellValueFactory>
                                     <PropertyValueFactory property="recipeId" />
                                  </cellValueFactory>
                               </TableColumn>
-                              <TableColumn text="Rating">
+                              <TableColumn text="Reitingas">
                                  <cellValueFactory>
                                     <PropertyValueFactory property="rating" />
                                  </cellValueFactory>
                               </TableColumn>
                            </columns>
                         </TableView>
-                        <TextField fx:id="recipeNameField1" layoutX="14.0" layoutY="222.0" promptText="Recipe Name" />
-                        <Button fx:id="filterBTN" layoutX="183.0" layoutY="222.0" mnemonicParsing="false" onAction="#SortByRating" text="Filter" />
-                        <TextField fx:id="commentField1" layoutX="15.0" layoutY="272.0" promptText="Comment" />
-                        <Button fx:id="submitRating1" layoutX="182.0" layoutY="272.0" mnemonicParsing="false" onAction="#addRating" text="Submit Comment" />
-                        <CheckBox fx:id="onestarR" layoutX="247.0" layoutY="411.0" mnemonicParsing="false" text="1" />
-                        <CheckBox fx:id="twostarsR" layoutX="284.0" layoutY="411.0" mnemonicParsing="false" text="2" />
-                        <CheckBox fx:id="fivestarsR" layoutX="426.0" layoutY="411.0" mnemonicParsing="false" text="5" />
-                        <CheckBox fx:id="fourstarsR" layoutX="377.0" layoutY="411.0" mnemonicParsing="false" text="4" />
-                        <CheckBox fx:id="threestarsR" layoutX="326.0" layoutY="411.0" mnemonicParsing="false" text="3" />
-                        <ComboBox fx:id="recipeCMB" layoutX="15.0" layoutY="320.0" prefWidth="150.0" promptText="Recipe List:" />
+                        <TextField fx:id="recipeNameField1" layoutX="14.0" layoutY="222.0" promptText="Recepto pavadinimas" />
+                        <TextField fx:id="commentField1" layoutX="15.0" layoutY="272.0" promptText="Komentaras" />
+                        <Button fx:id="filterBTN" layoutX="183.0" layoutY="222.0" mnemonicParsing="false" onAction="#SortByRating" text="Filtruoti" />
+                        <Button fx:id="refreshButton2" layoutX="236.0" layoutY="222.0" mnemonicParsing="false" onAction="#refreshComments" text="Perkrauti komentarus" />
+                        <Button fx:id="submitRating1" layoutX="182.0" layoutY="272.0" mnemonicParsing="false" onAction="#addRating" text="Siųsti" />
+                        <CheckBox fx:id="onestarR" layoutX="15.0" layoutY="313.0" mnemonicParsing="false" text="1" />
+                        <CheckBox fx:id="twostarsR" layoutX="53.0" layoutY="313.0" mnemonicParsing="false" text="2" />
+                        <CheckBox fx:id="fivestarsR" layoutX="182.0" layoutY="313.0" mnemonicParsing="false" text="5" />
+                        <CheckBox fx:id="fourstarsR" layoutX="139.0" layoutY="313.0" mnemonicParsing="false" text="4" />
+                        <CheckBox fx:id="threestarsR" layoutX="96.0" layoutY="313.0" mnemonicParsing="false" text="3" />
+                        <ComboBox fx:id="recipeCMB" layoutX="14.0" layoutY="222.0" prefWidth="150.0" promptText="Pasirinkti receptą:" />
+                        <Button fx:id="filterBTN2" layoutX="182.0" layoutY="222.0" mnemonicParsing="false" onAction="#filterComments" text="Filter" />
                      </children>
                   </AnchorPane>
                </content>
