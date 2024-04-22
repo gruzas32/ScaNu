@@ -13,6 +13,7 @@
         <mapping class="entity.Recipes"></mapping>
         <mapping class="entity.LoggedUser"></mapping>
         <mapping class="entity.Rating"></mapping>
+        <mapping class="entity.SavedRecipes"></mapping>
 
     </session-factory>
 </hibernate-configuration>

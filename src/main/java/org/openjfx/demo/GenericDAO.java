@@ -256,4 +256,27 @@ public class GenericDAO<T> {
             return session.createQuery(criteriaQuery).getResultList();
         }
     }
+
+    public List<SavedRecipes> retrieveAllSavedRecipes() {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<SavedRecipes> criteriaQuery = builder.createQuery(SavedRecipes.class);
+            Root<SavedRecipes> root = criteriaQuery.from(SavedRecipes.class);
+
+            criteriaQuery.select(root);
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
+    public List<SavedRecipes> retrieveRecipesBasedOnUserId(int userId) {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<SavedRecipes> criteriaQuery = builder.createQuery(SavedRecipes.class);
+            Root<SavedRecipes> root = criteriaQuery.from(SavedRecipes.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("userId"), userId));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
 }
