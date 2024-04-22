@@ -4,12 +4,11 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="472.0" prefWidth="469.0" stylesheets="/styles/shopStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.demo.ShopController">
    <children>
-      <TabPane prefHeight="472.0" prefWidth="469.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="shopWindow" prefHeight="472.0" prefWidth="469.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Receptai">
+          <Tab fx:id="receptaiTabId" text="Receptai">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="443.0" prefWidth="463.0">
                      <children>

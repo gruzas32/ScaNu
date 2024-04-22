@@ -9,7 +9,7 @@
       <TextField fx:id="login" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="190.0" />
       <Label layoutX="14.0" layoutY="56.0" text="Slaptažodis" />
       <PasswordField fx:id="password" layoutX="14.0" layoutY="75.0" prefHeight="25.0" prefWidth="190.0" />
-      <Button layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#UserLogin" text="Prisijungti" />
-      <Button layoutX="125.0" layoutY="113.0" mnemonicParsing="false" onAction="#UserRegister" text="Registracija" />
+      <Button fx:id="loginButton" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#UserLogin" text="Prisijungti" />
+      <Button fx:id="userRegistrationButton" layoutX="125.0" layoutY="113.0" mnemonicParsing="false" onAction="#UserRegister" text="Registracija" />
    </children>
 </AnchorPane>
