@@ -44,13 +44,15 @@ public class LoginController extends SceneChanger {
         GenericDAO<Users> usersDAO = new GenericDAO<>(sessionFactory);
         GenericDAO<LoggedUser> loggedUsersDAO = new GenericDAO<>(sessionFactory);
         Users user = usersDAO.retrieveUserByUsername(login);
-        if(user == null){
-            alert.setContentText("Neteisingas prisijungimo vardas arba slaptažodis!");
-            alert.showAndWait();
-        }
         if(this.login.getText().equals("") || this.password.getText().equals("")){
             alert.setContentText("Prašome užpildyti visus laukus");
             alert.showAndWait();
+            return;
+        }
+        if(user == null){
+            alert.setContentText("Neteisingas prisijungimo vardas arba slaptažodis!");
+            alert.showAndWait();
+            return;
         }
         else if(login.equals(user.getUsername())&& checkPassword(password, user.getPasswordHash())){
                 allLoggedUsers = loggedUsersDAO.retrieveAllLoggedUsers();
