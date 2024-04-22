@@ -221,6 +221,7 @@ public class ShopController extends SceneChanger {
         alert.setContentText("Įvertinimas pridėtas");
         alert.showAndWait();
     }
+
     public void loadCommentsField(MouseEvent mouseEvent) {
         Rating selectedWarehouse = (Rating) CommentsTableView.getSelectionModel().getSelectedItem();
         commentField1.setText(selectedWarehouse.getComment());
@@ -252,14 +253,30 @@ public class ShopController extends SceneChanger {
 
     }
     public void openMoreInfo(){
+        // Get the selected recipe
         Recipes selectedRecipe = RecipesTableView.getSelectionModel().getSelectedItem();
-        MoreInfo controller = new MoreInfo(selectedRecipe);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipeDetails.fxml"));
-        loader.setController(controller);
 
+        // Close the current stage
         Stage currentStage = (Stage) RecipesTableView.getScene().getWindow();
         currentStage.close();
-        OpenScene("moreAboutRecipe.fxml", "Daugiau informacijos");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("moreAboutRecipe.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+
+            // Get the controller of moreAboutRecipe
+            moreAboutRecipe controller = loader.getController();
+
+            // Pass the selected recipe to moreAboutRecipe controller
+            controller.setRecipe(selectedRecipe, sessionFactory);
+
+            // Show the stage
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void loadRecipes() {
         List<Recipes> recipes = new GenericDAO<>(sessionFactory).retrieveAllRecipes();

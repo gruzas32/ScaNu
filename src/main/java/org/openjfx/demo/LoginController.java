@@ -30,10 +30,10 @@ public class LoginController extends SceneChanger {
         sessionFactory = SessionFactoryProvider.provideSessionFactory();
     }
 
-    public LoginController(Stage stage, SessionFactory sessionFactory) {
-        super(stage);
-        this.sessionFactory = sessionFactory;
-    }
+//    public LoginController(Stage stage, SessionFactory sessionFactory) {
+//        super(stage);
+//        this.sessionFactory = sessionFactory;
+//    }
 
     public void UserLogin() {
        String login = this.login.getText();
@@ -77,9 +77,9 @@ public class LoginController extends SceneChanger {
         OpenScene("register.fxml", "Registracija");
     }
 
-    public int returnUserId(){
-        return userId;
-    }
+//    public int returnUserId(){
+//        return userId;
+//    }
 
 
 }
