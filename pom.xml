@@ -54,12 +54,6 @@
             <version>3.19.4</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core-jakarta</artifactId>
-            <version>6.1.5.Final</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
-        <dependency>
             <groupId>org.jfree</groupId>
             <artifactId>jfreechart</artifactId>
             <version>1.0.14</version>
