@@ -55,6 +55,18 @@ public class GenericDAO<T> {
             return session.createQuery(criteriaQuery).getResultList();
         }
     }
+
+    public List<Rating> retrieveAllRatingsByRecipeId(int recipeId) {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Rating> criteriaQuery = builder.createQuery(Rating.class);
+            Root<Rating> root = criteriaQuery.from(Rating.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("recipeId"), recipeId));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
     public List<Rating> retrieveAllRatingsByUserId(int userId) {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();

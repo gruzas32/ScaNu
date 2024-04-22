@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.demo.MoreInfo">
+<AnchorPane prefHeight="553.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.demo.moreAboutRecipe">
    <children>
-      <TextField fx:id="recipeNameField" layoutX="14.0" layoutY="22.0" promptText="Name" />
+      <TextField fx:id="recipeNameMore" editable="false" layoutX="37.0" layoutY="26.0" />
+      <TextArea fx:id="recipeDescriptionMore" editable="false" layoutX="37.0" layoutY="62.0" prefHeight="200.0" prefWidth="582.0" />
+      <TableView fx:id="recipeRatingTableMore" layoutX="37.0" layoutY="285.0" prefHeight="200.0" prefWidth="582.0">
+        <columns>
+            <TableColumn prefWidth="124.0" text="Recepto įvertinimas">
+                <cellValueFactory>
+                    <PropertyValueFactory property="rating" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="457.0" text="Komentaras">
+                <cellValueFactory>
+                    <PropertyValueFactory property="comment" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <Button layoutX="37.0" layoutY="514.0" mnemonicParsing="false" onAction="#backToMainPage" text="Grįžti atgal" />
    </children>
 </AnchorPane>
