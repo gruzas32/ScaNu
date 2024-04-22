@@ -48,18 +48,29 @@ public class ShopController extends SceneChanger {
     public TextField commentField1;
     public TextField recipeNameField1;
     public Button moreInfoButton;
-
+    public SavedRecipes savedRecipes;
+    public TableView savedRecipesView;
 
     private List<LoggedUser> allLoggedUsers;
+    public List<SavedRecipes>savedRecipesList;
 
-
+    public int userId;
     @FXML
     public void initialize() {
+        GenericDAO<LoggedUser> loggedUsersDAO = new GenericDAO<>(sessionFactory);
+        allLoggedUsers = loggedUsersDAO.retrieveAllLoggedUsers();
+        for (LoggedUser logged : allLoggedUsers) {
+            if (logged.isLogged() == true){
+                userId = logged.getUserId();
+            }
+        }
         recipesList = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
         ratingList = new GenericDAO<>(sessionFactory).RetrieveAllRatings();
+        savedRecipesList = new GenericDAO<>(sessionFactory).retrieveRecipesBasedOnUserId(userId);
         RecipesTableView.getItems().addAll(recipesList);
         RecipesTableView2.getItems().addAll(recipesList);
         CommentsTableView.getItems().addAll(ratingList);
+        savedRecipesView.getItems().addAll(savedRecipesList);
         loadRecipes();
     }
 
@@ -125,6 +136,7 @@ public class ShopController extends SceneChanger {
         recipesList = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
         RecipesTableView2.getItems().clear();
         RecipesTableView2.getItems().addAll(recipesList);
+        savedRecipesView.getItems().addAll();
     }
 
     public void SortByRating(){
@@ -161,15 +173,6 @@ public class ShopController extends SceneChanger {
     }
     public void addRating(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        GenericDAO<Users> usersDAO = new GenericDAO<>(sessionFactory);
-        GenericDAO<LoggedUser> loggedUsersDAO = new GenericDAO<>(sessionFactory);
-        int userId = 0;
-        allLoggedUsers = loggedUsersDAO.retrieveAllLoggedUsers();
-        for (LoggedUser logged : allLoggedUsers) {
-            if (logged.isLogged() == true){
-                 userId = logged.getUserId();
-            }
-        }
         String text = commentField.getText();
         if(text.isEmpty()){
             alert.setTitle("Klaida");
@@ -243,6 +246,11 @@ public class ShopController extends SceneChanger {
             fivestarsR.setSelected(true);
         }
     }
+    public void hideSelectedRecipefromTable(){
+        Recipes selectedRecipe = RecipesTableView.getSelectionModel().getSelectedItem();
+        RecipesTableView.getItems().remove(selectedRecipe);
+
+    }
     public void openMoreInfo(){
         Recipes selectedRecipe = RecipesTableView.getSelectionModel().getSelectedItem();
         MoreInfo controller = new MoreInfo(selectedRecipe);
@@ -258,6 +266,12 @@ public class ShopController extends SceneChanger {
         for (Recipes recipe : recipes) {
             recipeCMB.getItems().add(recipe.getRecipeName());
         }
+    }
+    public void AddSavedRecipe(){
+        SavedRecipes savedRecipes = new SavedRecipes();
+        savedRecipes.setRecipeId(RecipesTableView.getSelectionModel().getSelectedItem().getRecipeId());
+        savedRecipes.setUserId(userId);
+        new GenericDAO<>(sessionFactory).create(savedRecipes);
     }
 
     public void filterComments(){
@@ -279,7 +293,7 @@ public class ShopController extends SceneChanger {
         RecipesTableView.getItems().clear();
         RecipesTableView.getItems().addAll(recipesList);
         RecipesTableView2.getItems().clear();
-        RecipesTableView2.getItems().addAll(recipesList);
+        savedRecipesView.getItems().addAll(savedRecipesList);
     }
 
     public void duplicateSelectedItem(ActionEvent actionEvent) {
