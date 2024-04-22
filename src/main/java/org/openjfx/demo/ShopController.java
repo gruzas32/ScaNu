@@ -253,7 +253,7 @@ public class ShopController extends SceneChanger {
     }
     public void openMoreInfo(){
         Recipes selectedRecipe = RecipesTableView.getSelectionModel().getSelectedItem();
-        MoreInfo controller = new MoreInfo(selectedRecipe);
+        MoreInfo controller = new MoreInfo();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RecipeDetails.fxml"));
         loader.setController(controller);
 
@@ -304,7 +304,5 @@ Recipes selectedRecipe = RecipesTableView.getSelectionModel().getSelectedItem();
         new GenericDAO<>(sessionFactory).create(newRecipe);
         RecipesTableView.getItems().add(newRecipe);
         refreshRecipeTables();
-
-
     }
 }
