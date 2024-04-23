@@ -43,13 +43,20 @@ public class ShopController extends SceneChanger {
     public CheckBox fivestarsR;
     public CheckBox fourstarsR;
     public CheckBox threestarsR;
-    public ComboBox recipeCMB;
+
     public TableView CommentsTableView;
     public TextField commentField1;
     public TextField recipeNameField1;
     public Button moreInfoButton;
     public SavedRecipes savedRecipes;
     public TableView savedRecipesView;
+    public CheckBox cheesebox1;
+    public CheckBox cucumberBox1;
+    public CheckBox sugarBox1;
+    public CheckBox waterBox1;
+    public CheckBox sphagetiBox1;
+
+    public CheckBox flourBox1;
 
     private List<LoggedUser> allLoggedUsers;
     public List<SavedRecipes>savedRecipesList;
@@ -71,7 +78,6 @@ public class ShopController extends SceneChanger {
         RecipesTableView2.getItems().addAll(recipesList);
         CommentsTableView.getItems().addAll(ratingList);
         savedRecipesView.getItems().addAll(savedRecipesList);
-        loadRecipes();
     }
 
     public ShopController() {
@@ -278,12 +284,32 @@ public class ShopController extends SceneChanger {
             e.printStackTrace();
         }
     }
-    public void loadRecipes() {
-        List<Recipes> recipes = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
-        for (Recipes recipe : recipes) {
-            recipeCMB.getItems().add(recipe.getRecipeName());
+    public void FilterByIngredients(){
+
+
+        if (cheesebox1.isSelected()) {
+                 recipesList = new GenericDAO<>(sessionFactory).retrieveRecipesBasedOnCheckBoxes(false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false);
         }
+       else if (cucumberBox1.isSelected()) {
+            recipesList = new GenericDAO<>(sessionFactory).retrieveRecipesBasedOnCheckBoxes(false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false);
+        }
+        else if (sugarBox1.isSelected()) {
+            recipesList = new GenericDAO<>(sessionFactory).retrieveRecipesBasedOnCheckBoxes(false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false);
+        }
+       else if (waterBox1.isSelected()) {
+            recipesList = new GenericDAO<>(sessionFactory).retrieveRecipesBasedOnCheckBoxes(false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false);
+        }
+        else if (sphagetiBox1.isSelected()) {
+            recipesList = new GenericDAO<>(sessionFactory).retrieveRecipesBasedOnCheckBoxes(false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false);
+        }
+        else if (flourBox1.isSelected()) {
+            recipesList = new GenericDAO<>(sessionFactory).retrieveRecipesBasedOnCheckBoxes(false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false);
+        }
+        RecipesTableView2.getItems().addAll(recipesList);
     }
+
+
+
     public void AddSavedRecipe(){
         SavedRecipes savedRecipes = new SavedRecipes();
         savedRecipes.setRecipeId(RecipesTableView.getSelectionModel().getSelectedItem().getRecipeId());
@@ -291,13 +317,6 @@ public class ShopController extends SceneChanger {
         new GenericDAO<>(sessionFactory).create(savedRecipes);
     }
 
-    public void filterComments(){
-        String text = recipeCMB.getValue().toString();
-        int recipeId = new GenericDAO<>(sessionFactory).retrieveRecipeIdBasedOnName(text).getRecipeId();
-        ratingList = new GenericDAO<>(sessionFactory).RetrieveRatingsBasedOnRecipeId(recipeId);
-        CommentsTableView.getItems().clear();
-        CommentsTableView.getItems().addAll(ratingList);
-    }
     public void refreshComments() {
         ratingList = new GenericDAO<>(sessionFactory).RetrieveAllRatings();
         CommentsTableView.getItems().clear();
