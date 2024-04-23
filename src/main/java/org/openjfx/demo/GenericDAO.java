@@ -309,6 +309,114 @@ public class GenericDAO<T> {
         }
 
     }
+    public List<Recipes> retrieveRecipeBasedOnCheckBoxIsChecked()
+    {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Recipes> criteriaQuery = builder.createQuery(Recipes.class);
+            Root<Recipes> root = criteriaQuery.from(Recipes.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("cheese"), true));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
+    public List<Recipes> retrieveRecipeBasedOnCheckBoxIsChecked2()
+    {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Recipes> criteriaQuery = builder.createQuery(Recipes.class);
+            Root<Recipes> root = criteriaQuery.from(Recipes.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("cucumber"), true));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
+    public List<Recipes> retrieveRecipeBasedOnCheckBoxIsChecked3()
+    {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Recipes> criteriaQuery = builder.createQuery(Recipes.class);
+            Root<Recipes> root = criteriaQuery.from(Recipes.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("sugar"), true));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
+    public List<Recipes> retrieveRecipeBasedOnCheckBoxIsChecked4()
+    {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Recipes> criteriaQuery = builder.createQuery(Recipes.class);
+            Root<Recipes> root = criteriaQuery.from(Recipes.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("water"), true));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
+    public List<Recipes> retrieveRecipeBasedOnCheckBoxIsChecked5()
+    {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Recipes> criteriaQuery = builder.createQuery(Recipes.class);
+            Root<Recipes> root = criteriaQuery.from(Recipes.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("spaghetti"), true));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
+    public List<Recipes> retrieveRecipeBasedOnCheckBoxIsChecked6()
+    {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Recipes> criteriaQuery = builder.createQuery(Recipes.class);
+            Root<Recipes> root = criteriaQuery.from(Recipes.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("flour"), true));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
+    public List<Recipes> retrieveRecipeBasedOnCheckBoxIsChecked7()
+    {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Recipes> criteriaQuery = builder.createQuery(Recipes.class);
+            Root<Recipes> root = criteriaQuery.from(Recipes.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("newyear"), true));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
+    public List<Recipes> retrieveRecipeBasedOnCheckBoxIsChecked8()
+    {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Recipes> criteriaQuery = builder.createQuery(Recipes.class);
+            Root<Recipes> root = criteriaQuery.from(Recipes.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("christmas"), true));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
+    public List<Recipes> retrieveRecipeBasedOnCheckBoxIsChecked9()
+    {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Recipes> criteriaQuery = builder.createQuery(Recipes.class);
+            Root<Recipes> root = criteriaQuery.from(Recipes.class);
+
+            criteriaQuery.select(root).where(builder.equal(root.get("evening"), true));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+    }
     public List<SavedRecipes> retrieveRecipesBasedOnUserId(int userId) {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();

@@ -96,6 +96,11 @@
                         <CheckBox fx:id="sphagetiBox1" layoutX="113.0" layoutY="385.0" mnemonicParsing="false" text="Spagečiai" />
                         <CheckBox fx:id="flourBox1" layoutX="113.0" layoutY="412.0" mnemonicParsing="false" text="Miltai" />
                         <Button layoutX="179.0" layoutY="330.0" mnemonicParsing="false" onAction="#FilterByIngredients" text="Filtruoti" />
+                        <Label layoutX="250.0" layoutY="334.0" text="Filtruoti pagal šventes:" />
+                        <CheckBox fx:id="NYCheckBox" layoutX="250.0" layoutY="358.0" mnemonicParsing="false" text="Naujieji metai" />
+                        <CheckBox fx:id="ChrismasCheckBox" layoutX="363.0" layoutY="358.0" mnemonicParsing="false" text="Kalėdos" />
+                        <CheckBox fx:id="EveCheckBox" layoutX="251.0" layoutY="386.0" mnemonicParsing="false" text="Velykos" />
+                        <Button fx:id="filterBTN4" onAction="#sortByEvent" layoutX="371.0" layoutY="330.0" mnemonicParsing="false" text="Filtruoti" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -159,8 +164,8 @@
                               </TableColumn>
                            </columns>
                         </TableView>
-                        <Button fx:id="refreshbutton2" onAction="#refreshRecipeTables" layoutX="14.0" layoutY="294.0" mnemonicParsing="false" text="Atnaujinti" />
-                        <Button fx:id="delButton" onAction="#deleteSavedRecipe" layoutX="96.0" layoutY="294.0" mnemonicParsing="false" text="Ištrinti" />
+                        <Button fx:id="refreshbutton2" layoutX="14.0" layoutY="294.0" mnemonicParsing="false" onAction="#refreshRecipeTables" text="Atnaujinti" />
+                        <Button fx:id="delButton" layoutX="96.0" layoutY="294.0" mnemonicParsing="false" onAction="#deleteSavedRecipe" text="Ištrinti" />
                      </children>
                   </AnchorPane>
                </content>
