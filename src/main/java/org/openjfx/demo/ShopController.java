@@ -109,9 +109,14 @@ public class ShopController extends SceneChanger {
 
     public void loadProductsField(MouseEvent mouseEvent) {
 
-        Recipes selectedWarehouse = RecipesTableView.getSelectionModel().getSelectedItem();
-        editRecipeF.setText(selectedWarehouse.getRecipeName());
-        editDescriptionF.setText(selectedWarehouse.getDescription());
+       Recipes selectedRecipe = RecipesTableView.getSelectionModel().getSelectedItem();
+       if(selectedRecipe == null) {
+           return;
+       }
+       else {
+           editRecipeF.setText(selectedRecipe.getRecipeName());
+           editDescriptionF.setText(selectedRecipe.getDescription());
+       }
     }
 
     public void closeProgram() {
