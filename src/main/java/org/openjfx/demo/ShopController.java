@@ -284,6 +284,11 @@ public class ShopController extends SceneChanger {
             e.printStackTrace();
         }
     }
+    public void deleteSavedRecipe(){
+        SavedRecipes selectedRecipe = (SavedRecipes) savedRecipesView.getSelectionModel().getSelectedItem();
+        new GenericDAO<>(sessionFactory).delete(selectedRecipe);
+        savedRecipesView.getItems().remove(selectedRecipe);
+    }
     public void FilterByIngredients(){
 
 
@@ -328,8 +333,9 @@ public class ShopController extends SceneChanger {
         recipesList = new GenericDAO<>(sessionFactory).retrieveAllRecipes();
         RecipesTableView.getItems().clear();
         RecipesTableView.getItems().addAll(recipesList);
-        RecipesTableView2.getItems().clear();
+        savedRecipesView.getItems().clear();
         savedRecipesView.getItems().addAll(savedRecipesList);
+
     }
 
     public void duplicateSelectedItem(ActionEvent actionEvent) {

@@ -95,7 +95,7 @@
                         <CheckBox fx:id="waterBox1" layoutX="113.0" layoutY="358.0" mnemonicParsing="false" text="Vanduo" />
                         <CheckBox fx:id="sphagetiBox1" layoutX="113.0" layoutY="385.0" mnemonicParsing="false" text="Spagečiai" />
                         <CheckBox fx:id="flourBox1" layoutX="113.0" layoutY="412.0" mnemonicParsing="false" text="Miltai" />
-                        <Button layoutX="179.0" onAction="#FilterByIngredients" layoutY="330.0" mnemonicParsing="false" text="Filtruoti" />
+                        <Button layoutX="179.0" layoutY="330.0" mnemonicParsing="false" onAction="#FilterByIngredients" text="Filtruoti" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -159,7 +159,8 @@
                               </TableColumn>
                            </columns>
                         </TableView>
-                        <Button fx:id="refreshbutton2" layoutX="14.0" layoutY="294.0" mnemonicParsing="false" text="Atnaujinti" />
+                        <Button fx:id="refreshbutton2" onAction="#refreshRecipeTables" layoutX="14.0" layoutY="294.0" mnemonicParsing="false" text="Atnaujinti" />
+                        <Button fx:id="delButton" onAction="#deleteSavedRecipe" layoutX="96.0" layoutY="294.0" mnemonicParsing="false" text="Ištrinti" />
                      </children>
                   </AnchorPane>
                </content>
