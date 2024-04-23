@@ -280,6 +280,35 @@ public class GenericDAO<T> {
             return session.createQuery(criteriaQuery).getResultList();
         }
     }
+    public List<Recipes> retrieveRecipesBasedOnCheckBoxes(boolean eggs, boolean milk, boolean cheese, boolean sausage, boolean cucumber, boolean tomato, boolean cream, boolean sugar, boolean water, boolean flour, boolean saliami, boolean macaroni, boolean tomatosauce, boolean spaghetti, boolean calendar, boolean cabbage) {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Recipes> criteriaQuery = builder.createQuery(Recipes.class);
+            Root<Recipes> root = criteriaQuery.from(Recipes.class);
+
+            criteriaQuery.select(root).where(builder.and(
+                    builder.equal(root.get("eggs"), eggs),
+                    builder.equal(root.get("milk"), milk),
+                    builder.equal(root.get("cheese"), cheese),
+                    builder.equal(root.get("sausage"), sausage),
+                    builder.equal(root.get("cucumber"), cucumber),
+                    builder.equal(root.get("tomato"), tomato),
+                    builder.equal(root.get("cream"), cream),
+                    builder.equal(root.get("sugar"), sugar),
+                    builder.equal(root.get("water"), water),
+                    builder.equal(root.get("flour"), flour),
+                    builder.equal(root.get("saliami"), saliami),
+                    builder.equal(root.get("macaroni"), macaroni),
+                    builder.equal(root.get("tomatosauce"), tomatosauce),
+                    builder.equal(root.get("spaghetti"), spaghetti),
+                    builder.equal(root.get("calendar"), calendar),
+                    builder.equal(root.get("cabbage"), cabbage)
+            ));
+
+            return session.createQuery(criteriaQuery).getResultList();
+        }
+
+    }
     public List<SavedRecipes> retrieveRecipesBasedOnUserId(int userId) {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
