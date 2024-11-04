@@ -76,7 +76,7 @@ public class LoginController extends SceneChanger {
         currentStage.close();
         OpenScene("register.fxml", "Registracija");
     }
-
+/////
 //    public int returnUserId(){
 //        return userId;
 //    }
